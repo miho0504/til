@@ -1,0 +1,22 @@
+<!-- グリッドレイアウト -->
+
+<!-- リキッドレイアウト -->
+リキッドとは「流体」という意味ですが、ブラウザの表示領域に合わせて
+コンテンツの幅や位置を可変で表示させるレイアウトで
+
+<body>
+    <header>ヘッダー</header>
+    <nav>ナビ</nav>
+    <main>メイン</main>
+    <aside>サイド</aside>
+    <footer>フッター</footer>
+  </body>
+
+    body {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: 1fr 700px 1fr;
+    }
+  
+    
+
