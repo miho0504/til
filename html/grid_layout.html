@@ -1,4 +1,6 @@
 <!-- グリッドレイアウト -->
+🌟コツ
+ワイヤーフレームを作成してからのほうが爆速コーディングができる
 
 <!-- リキッドレイアウト -->
 リキッドとは「流体」という意味ですが、ブラウザの表示領域に合わせて
@@ -62,6 +64,43 @@
     grid-template-rows: 30px 1fr 50px;
   }
 }
-        
-header
- 
+
+🌟memo
+<section>これは大きな要素を囲む</section>
+
+display:inline-brock
+ a、span、imgなどのタグの初期値はコレ
+
+ block
+ p、div、ul、h1〜h6などのタグの初期値はコレ
+
+
+
+🌟imgタグにリンクをつける
+
+.SNS_Logo a {
+    display: block;
+    width: 20%;
+}
+
+.SNS_Logo a img {
+    width: 100%
+}
+
+.SNS_Logo img {
+    width: 30%
+}
+
+🌟コンタクトフォーム等チートシート
+
+全体はform タグで囲んであげる
+<label></label>で囲んであげる
+
+<input type="text" name="Email" size="40" maxlength="40">
+<form action="contact01.cgi" method="post" encotype="text/plain" id="contact01">
+    <!-- colos行数 -->
+<textarea name="memo" id="" cols="30" rows="10"></textarea>
+
+<input type="submit" value="送信する" form="contact01">
+<input type="reset" value="リセット" form="contact01">
+
