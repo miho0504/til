@@ -19,6 +19,14 @@ const input = (event: any) => {
 inputで入力された値はvalueとなっている
 
 
+🌟クリアボタン
+<button v-on:click="Clear">Crear</button>
+
+const Clear = () => {
+  item1.name = ''
+  item1.price = 0
+}
+
 
 
 

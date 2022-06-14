@@ -1,0 +1,48 @@
+/* 破綻しにくい CSS 設計 */
+
+https://github.com/hiloki/flocss
+
+CSS には "詳細度" (優先順位) が存在するため、詳細度がもっとも高いスタイルが優先されます。
+
+正しい設計としてはスタイルの上書きをしないことが望ましい
+
+#foo{ color: red; }
+.bar{ color: blue; }
+
+<p id="foo" class="bar">
+ここの文字は何色でしょう？
+</p>
+
+
+/* フォントの上書き */
+
+body{ font-size: 16px; }
+section p{ font-size: 12px; }
+
+<section>
+  <p>すべての文字が16pxになるので12pxで上書きしなきゃ...</p>
+</section>
+
+
+ページの中に複数の h2 要素があったとします。OOCSS では、
+それらの各要素に専用のスタイルを定義します。
+
+h2{ font-size: 16px; }
+.h2_r{ font-color: red; }
+.h2_b{ font-color: blue; }
+.h2_w{ font-color: white; }
+
+<h2 class="h2_r">Title Red</h2>
+<h2 class="h2_b">Title Blue</h2>
+<h2 class="h2_w">Title White</h2>
+
+
+予測しやすい/再利用しやすい/保守しやすい/拡張しやすいをcss設計でする
+z-indexの衝突を避けたい
+z-indexの指定を理由を明確にしたい
+コンポーネントが増えるたびにz-indexを増やしたくない
+
+極力、z-indexを使用しない
+z-indexは0から4までの値を使用する
+原則として-1などの負数は使用しない
+
