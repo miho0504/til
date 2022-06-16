@@ -1,0 +1,57 @@
+// scss
+
+div {
+    width: 300px;
+    height: 200px;
+    background: red;
+    &:before {
+      content: '';
+      display: block;
+      width: 300px;
+      height: 150px;
+      background: blue;
+    }
+    &.hoge { /* classがhogeのdiv　&がついてるからdivと.hogeがくっつく */
+      width: 150px;
+      height: 29px;
+      background: yellow;
+    }
+    .hoge { /* divの中にいるclassがhoge　&がついていないのでdivと.hogeがくっつかない */
+      width: 120px;
+      height: 53px;
+      background: green;
+    }
+  }
+
+
+/* 変数宣言の仕方*/
+$変数名: 値;
+
+$main_color: red; 
+$sub_color: blue;
+$font_size: 16px;
+
+div {
+  color: $main_color;
+  font-size: 18px;
+  p {
+    border: 1px solid $main_color;
+    color: $sub_color;
+    font-size: $font-size;
+  }
+}
+
+div {
+    @if 1 + 1 == 2 { width: 100%; } // 1+1=2なのでtrue
+    @if 1 > 2 {width: 50%;} // 1は2より小さいのでfalse
+    @if null {width: 10%;} // nullはfalse
+  }
+
+  cssでは
+
+  div {
+    width: 100%;
+  }
+
+
+  https://qiita.com/nchhujimiyama/items/8a6aad5abead39d1352a

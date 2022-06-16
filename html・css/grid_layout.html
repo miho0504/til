@@ -112,3 +112,21 @@ display:inline-brock
 
 <!-- 忘れがちなこと -->
 ⭐️写真は<figure></figure>
+
+
+/* メディアクエリ */
+
+グリッド内の各カラムの最小幅は200pxです。ビューポートのサイズが変更されると、カラムの数は理想的な幅に合わせて変更されます。
+このグリッドはCSS Gridとminmax()を使うと、わずか2行のCSSで作成できます。
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+minmax(min, max)
+
+repeat()
+この関数はグリッド内の複数のカラムに対して同じ値を指定でき、繰り返す回数と繰り返す値の2つの値を受け取ります。
+auto-fit
+このキーワードはrepeat()で繰り返し使用することができます。これにより、各カラムの幅に基づいて使用されるカラムの数が柔軟に変更されます。
