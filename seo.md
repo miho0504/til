@@ -26,6 +26,8 @@ meta keyword（メタキーワード）：
 参照サイト
 https://emma.tools/magazine/html-tags-for-seo/
 
+https://digitalidentity.co.jp/blog/seo/ogp-share-setting.html
+
 
 
 
