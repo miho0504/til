@@ -37,6 +37,13 @@ OGPを設定すべき理由は、ユーザーへの共有が限定的になる�
 
 display:noneは使わない方がいい
 
+真ん中寄せ
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
 
 参照サイト
 https://emma.tools/magazine/html-tags-for-seo/
