@@ -44,6 +44,8 @@ display:noneは使わない方がいい
     left: 50%;
     transform: translate(-50%, -50%);
 
+ポジションを使った時には％レスポンシブ
+
 
 参照サイト
 https://emma.tools/magazine/html-tags-for-seo/
