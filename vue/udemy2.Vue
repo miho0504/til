@@ -31,3 +31,29 @@ const postTweet = () => {
 
 🔥posttweetを押すとtweetというリアクティブな配列に対してpushというメソッドで
 tweetという新しいオブジェクトを挿入できる
+
+🌟削除ボタン
+
+const tweets = ref([{ id: 0, description: 'Hello, world!'}, { id: 0, description: 'this is the second tweet!'}])
+
+
+🌟引数から受け取ったidが一致するかどうか
+tweetsの中身のvalueを消す処理をする
+filter(t => t.id !== id)
+フィルター関数を使っており
+配列一個一個がtにわたってくるようにしている
+!== で受け取ってはいない関数を返している
+削除ボタンで押されていない関数を返しtweetsに入れている
+
+
+const deleteTweet = () => {
+    tweets.value = tweets.value.filter(t => t.id !== id)
+}
+
+<button @click="deleteTweet(tweet.id)class="delsetebutton">delsete</button>
+
+
+🌟何もない場合メッセージ表示 
+ Array.length プロパティを使う！！数を数える
+
+<p v-if="tweets.length <= 0">no tweet<p>

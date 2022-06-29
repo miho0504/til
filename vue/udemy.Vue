@@ -153,5 +153,4 @@ const priceLabel = computed(() => {
 
 <label>({ priceLabel })</label>
 
-⑤wacth
 
