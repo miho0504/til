@@ -1,4 +1,4 @@
-udemy TypeScriptとVue
+udemy TypeScriptとVueコンポーネント！！！
 
 jsフレームワーク
 vueはリアクティブ（反応が早いものを作る際にいい）
@@ -152,3 +152,6 @@ const priceLabel = computed(() => {
 })
 
 <label>({ priceLabel })</label>
+
+⑤wacth
+
