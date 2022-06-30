@@ -1,57 +1,139 @@
-// scss
+scssチート
 
-div {
-    width: 300px;
-    height: 200px;
-    background: red;
-    &:before {
-      content: '';
-      display: block;
-      width: 300px;
-      height: 150px;
-      background: blue;
-    }
-    &.hoge { /* classがhogeのdiv　&がついてるからdivと.hogeがくっつく */
-      width: 150px;
-      height: 29px;
-      background: yellow;
-    }
-    .hoge { /* divの中にいるclassがhoge　&がついていないのでdivと.hogeがくっつかない */
-      width: 120px;
-      height: 53px;
-      background: green;
+・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+@mixinで再利用するスタイルを指定する
+はじめに、@mixinで再利用するスタイルを指定します。
+Mixin（ミックスイン）は関数に近く、
+CSSスニペットに名前を付けていつでもどこでも呼び出せるというイメージ。
+
+mixの呼び出しは@include で呼び出す。
+
+@mixin reset-box {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+@includeでスタイルをインクルードする
+次に、@includeで@mixinで指定したスタイルをインクルードします。
+
+@mixin reset-box {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include reset-box;
+  background-color: yellow;
+
+
+  (例)
+  @mixin sp {
+    @media screen and (max-width: 767px) {
+      @content;
     }
   }
+  @include sp {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    padding: 10px 0 20px 20px;
+  }
 
+・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
 
-/* 変数宣言の仕方*/
-$変数名: 値;
+  自作関数
 
-$main_color: red; 
-$sub_color: blue;
-$font_size: 16px;
-
-div {
-  color: $main_color;
-  font-size: 18px;
-  p {
-    border: 1px solid $main_color;
-    color: $sub_color;
-    font-size: $font-size;
+  @function 関数名(引数) {
+    @return 
   }
 }
 
-div {
-    @if 1 + 1 == 2 { width: 100%; } // 1+1=2なのでtrue
-    @if 1 > 2 {width: 50%;} // 1は2より小さいのでfalse
-    @if null {width: 10%;} // nullはfalse
+SPデザイン横500pxの場合のフォントサイズの（下）10px基準
+baseに書く
+
+@function get_vw($size, $viewport:500){
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@mixin fs($font_size:10){
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}
+
+※あとは include の引数に指定したいサイズを入力するだけ！
+@include  fs-vw(デザイン上でのフォントサイズ);
+
+・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+計算が面倒なrem単位について、Sassの関数を用いてpxのごとく直感的に扱う方法
+
+$baseFontSize: 16;
+  @function rem($pixels) {
+    @return $pixels / $baseFontSize * 1rem;
   }
 
-  cssでは
+  p {
+    font-size: rem(16);
+}
 
-  div {
-    width: 100%;
-  }
+このように記述するとCSSファイルでは1remと出力され、ブラウザでは16pxとなります。
+rem(20)と書けば、CSSでは1.25remと出力され、ブラウザでは20px。
+rem(40)なら、2.5rem、ブラウザでは40px。
+rem( n )のnの数字がそのままpx値になる
+
+・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+@mixin rem($size) 
+  font-size: $size + px
+  font-size: ($size / 16) + rem
+ 
+h1
+  @include rem(44)
+    
+h2
+  @include rem(30)
 
 
-  https://qiita.com/nchhujimiyama/items/8a6aad5abead39d1352a
+  ・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+  値をオブジェクト形式で記述した変数を呼び出すときはmap-getメソッドを使います。
+
+  同じファイルの中で定義してある変数か、@importを使って読み込んだ変数を呼び出すには、map-getメソッドを使い、第1引数で変数名を指定し、第２引数で欲しい値を持つキー名を指定します。
+
+  map-get($変数名, キー名);
+
+  @useを使って読み込んだファイルの中の変数を呼び出すには、変数名の前にファイルの名前空間を指定します。
+
+  map-get(名前空間.$変数名, キー名);
+
+  ・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+  content は CSS のプロパティで、ある要素を生成された値で置き換えます。 content プロパティを使用して挿入されたオブジェクトは、無名の置換要素 になります。
+  
+  ・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+  
+  スタイルの継承ができる@extend
+
+  ・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+  counter
+
+  親要素に
+  counter-reset: number 0;
+
+  counter-increment: number 1;
+  →出力１・２・３
+  →２にしたら２の倍数になる
+  content: counter(number) " ";
+  →表示形式この場合だと数字の後に半角空間
+
+  ・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+
+  @function palettes($key, $tone: base) {
+    @return map-get( map-get($palettes, $key), $tone);
+}
+
+  https://qiita.com/manabuyasuda/items/ae42db5604cd723fb3cd
