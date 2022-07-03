@@ -6,4 +6,9 @@ const buy = () => {
 
 <button v-on:click="buy(itemName1)">BuY</button>
 
+vue3
+
+<script setup>
+
+
 
